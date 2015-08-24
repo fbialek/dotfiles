@@ -1,27 +1,16 @@
-" An example for a vimrc file.
-"
-" Maintainer:	Bram Moolenaar <Bram@vim.org>
-" Last change:	2011 Apr 15
-"
-" To use it, copy it to
-"     for Unix and OS/2:  ~/.vimrc
-"	      for Amiga:  s:.vimrc
-"  for MS-DOS and Win32:  $VIM\_vimrc
-"	    for OpenVMS:  sys$login:.vimrc
 set nocompatible
 filetype off
 set rtp+=~/.vim/bundle/vundle.vim
 call vundle#rc()
 
 Plugin 'gmarik/vundle'
-"Plugin 'Townk/vim-autoclose'
 Plugin 'scrooloose/nerdtree.git'
 Plugin 'Buffergator'
 Plugin 'itchyny/lightline.vim'
-"Plugin 'skammer/vim-css-color'      
-"Plugin 'hail2u/vim-css3-syntax'
 Plugin 'mattn/emmet-vim' 
 Plugin 'tpope/vim-surround' 
+Plugin 'Raimondi/delimitMate' 
+Plugin 'unblevable/quick-scope'  
 call vundle#end()
 
 filetype plugin indent on
@@ -46,7 +35,8 @@ let g:lightline = {
 if !has('gui_running')
 	  set t_Co=256
   endif
-
+" allow .hbs extension  files
+au BufNewFile,BufRead *.hbs set filetype=html
   
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
@@ -153,7 +143,7 @@ set relativenumber
 set noswapfile
 set nobackup
 set nowb
-
+nnoremap <leader>ft Vatzf
 nnoremap ; :
 nnoremap : ;
 vnoremap ; :
