@@ -4,12 +4,11 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 Plugin 'gmarik/Vundle.vim'
-Plugin 'scrooloose/nerdtree.git'
-Plugin 'itchyny/lightline.vim'
 Plugin 'mattn/emmet-vim' 
 Plugin 'tpope/vim-surround' 
 Plugin 'tpope/vim-repeat' 
 Plugin 'tpope/vim-fugitive' 
+Plugin 'tpope/vim-commentary' 
 Plugin 'tpope/vim-vinegar' 
 Plugin 'Raimondi/delimitMate' 
 Plugin 'unblevable/quick-scope'  
@@ -32,16 +31,11 @@ set fileencoding=utf-8
 
 " don't use colors on long lines
 set synmaxcol=120
-
-" lightline plugin
 set laststatus=2
-let g:lightline = {
-      \ 'colorscheme': 'wombat',
-      \ }
-if !has('gui_running')
-	  set t_Co=256
-  endif
-  
+set statusline=%F%m%r%h%w\ (%{&ff}){%Y}[%l,%v][%p%%]\ 
+hi StatusLine                  ctermfg=8     ctermbg=2     cterm=NONE
+hi StatusLineNC                ctermfg=2     ctermbg=8     cterm=NONE 
+
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
@@ -53,6 +47,7 @@ if has("vms")
 else
   set backup		" keep a backup file
 endif
+
 set history=50		" keep 50 lines of command line history
 set ruler		" show the cursor position all the time
 set showcmd		" display incomplete commands
@@ -85,11 +80,6 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
-
-:set guioptions-=m  "remove menu bar
-:set guioptions-=T  "remove toolbar
-:set guioptions-=r  "remove right-hand scroll bar
-:set guioptions-=L  "remove left-hand scroll bar
 
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
