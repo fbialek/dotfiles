@@ -33,11 +33,6 @@ set fileencoding=utf-8
 " don't use colors on long lines
 set synmaxcol=120
 
-
-" Use Vim settings, rather than Vi settings (much better!).
-" This must be first, because it changes other options as a side effect.
-set nocompatible
-
 " lightline plugin
 set laststatus=2
 let g:lightline = {
@@ -49,6 +44,7 @@ if !has('gui_running')
   
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
+
 set tabstop=2 softtabstop=2 expandtab shiftwidth=2 
 set number
 
@@ -107,3 +103,7 @@ let g:syntastic_javascript_checkers = ['jshint']
 
 let g:javascript_enable_domhtmlcss = 1 
 let g:javascript_ignore_javaScriptdoc = 1 
+
+let g:UltiSnipsExpandTrigger="<c-s>"
+let g:UltiSnipsJumpForwardTrigger="<c-c>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
