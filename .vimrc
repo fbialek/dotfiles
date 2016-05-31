@@ -30,7 +30,7 @@ set encoding=utf-8
 set fileencoding=utf-8
 
 " don't use colors on long lines
-set synmaxcol=120
+set synmaxcol=2120
 set laststatus=2
 set statusline=%F%m%r%h%w\ (%{&ff}){%Y}[%l,%v][%p%%]\ 
 hi StatusLine                  ctermfg=8     ctermbg=2     cterm=NONE
