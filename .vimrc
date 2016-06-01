@@ -63,7 +63,6 @@ inoremap <C-U> <C-G>u<C-U>
 inoremap jj <ESC>
 
 
-set relativenumber
 set noswapfile
 set nobackup
 set nowb
