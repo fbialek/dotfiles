@@ -31,10 +31,11 @@ set fileencoding=utf-8
 
 " don't use colors on long lines
 set synmaxcol=2120
+colo harlequin
 set laststatus=2
 set statusline=%F%m%r%h%w\ (%{&ff}){%Y}[%l,%v][%p%%]\ 
-hi StatusLine                  ctermfg=8     ctermbg=2     cterm=NONE
-hi StatusLineNC                ctermfg=2     ctermbg=8     cterm=NONE 
+hi StatusLine                  ctermfg=white     ctermbg=2     cterm=NONE
+hi StatusLineNC                ctermfg=white     ctermbg=8     cterm=NONE 
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
