@@ -11,7 +11,6 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-commentary' 
 Plugin 'tpope/vim-vinegar' 
 Plugin 'Raimondi/delimitMate' 
-Plugin 'unblevable/quick-scope'  
 Plugin 'digitaltoad/vim-pug'  
 Plugin 'ternjs/tern_for_vim'  
 Plugin 'scrooloose/syntastic'  
@@ -29,6 +28,7 @@ set omnifunc=syntaxcomplete#Complete
 set encoding=utf-8
 set fileencoding=utf-8
 
+
 " don't use colors on long lines
 set synmaxcol=2120
 colo harlequin
@@ -42,12 +42,6 @@ set backspace=indent,eol,start
 
 set tabstop=2 softtabstop=2 expandtab shiftwidth=2 
 set number
-
-if has("vms")
-  set nobackup		" do not keep a backup file, use versions instead
-else
-  set backup		" keep a backup file
-endif
 
 set history=50		" keep 50 lines of command line history
 set ruler		" show the cursor position all the time
@@ -70,6 +64,7 @@ set nowb
 
 "fold tag
 nnoremap <leader>ft Vatzf
+
 nnoremap ; :
 vnoremap ; :
 nnoremap <Space> ;
