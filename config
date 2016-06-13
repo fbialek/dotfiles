@@ -200,10 +200,10 @@ bar {
         status_command i3blocks
 colors {
       statusline $base05
-      background #740000
+      background #344c81
       focused_workspace  $base01 #1a70b7    $base07
       active_workspace   $base01 #1a70b7    $base03
-      inactive_workspace $base01 #740000    $base03
+      inactive_workspace $base01 #344c81    $base03
       urgent_workspace   $base01 $base01    $base08
     }
 }
