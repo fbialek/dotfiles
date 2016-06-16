@@ -213,4 +213,4 @@ colors {
 
 bindsym $mod+shift+x exec i3lock -c 000000
 
-exec_always feh --bg-scale /home/filip/Obrazy/photo-110607045.jpg
+exec_always feh --bg-scale /home/filip/images/bg.jpg

@@ -34,7 +34,7 @@ set t_ut=
 
 " don't use colors on long lines
 set synmaxcol=2120
-colo gurunew
+colo darkblue 
 
 if $COLORTERM == 'gnome-terminal'
   set t_Co=256
