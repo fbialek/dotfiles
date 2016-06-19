@@ -118,3 +118,8 @@ let g:SuperTabDefaultCompletionType = '<C-n>'
 let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+
+let g:UltiSnipsSnippetDirectories=[$HOME.'/UltiSnips/']
+
+
+au BufRead,BufNewFile *.scss set filetype=scss.css
