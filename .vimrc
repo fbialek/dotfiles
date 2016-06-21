@@ -34,11 +34,9 @@ set t_ut=
 
 " don't use colors on long lines
 set synmaxcol=2120
-colo darkblue 
-
-if $COLORTERM == 'gnome-terminal'
-  set t_Co=256
-endif
+colo gruvbox
+let g:gruvbox_contrast_dark='hard'
+set background=dark
 
 set laststatus=2
 set statusline=%F%m%r%h%w\ (%{&ff}){%Y}[%l,%v][%p%%]\ 
