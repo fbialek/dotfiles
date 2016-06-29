@@ -63,9 +63,9 @@ inoremap <C-U> <C-G>u<C-U>
 
 inoremap jj <ESC>
 " easy yank from system clipboard
-noremap <space>y "+y
-noremap <space>p "+p
-noremap <space>P "+P
+noremap <enter>y "+y
+noremap <enter>p "+p
+noremap <enter>P "+P
 
 set noswapfile
 set nobackup
