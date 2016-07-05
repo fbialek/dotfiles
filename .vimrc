@@ -13,7 +13,6 @@ Plugin 'tpope/vim-vinegar'
 Plugin 'Raimondi/delimitMate' 
 Plugin 'digitaltoad/vim-pug'  
 Plugin 'ternjs/tern_for_vim'  
-Plugin 'scrooloose/syntastic'  
 Plugin 'Valloric/YouCompleteMe'  
 Plugin 'vimwiki/vimwiki'  
 Plugin 'ctrlpvim/ctrlp.vim'  
@@ -86,15 +85,7 @@ nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
 set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
-
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 1
-let g:syntastic_javascript_checkers = ['jshint']
 
 let g:javascript_enable_domhtmlcss = 1 
 let g:javascript_ignore_javaScriptdoc = 1 
@@ -121,3 +112,4 @@ let g:UltiSnipsSnippetDirectories=[$HOME.'/UltiSnips/']
 
 
 au BufRead,BufNewFile *.scss set filetype=scss.css
+au BufRead,BufNewFile *.jade set filetype=javascript
