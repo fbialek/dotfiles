@@ -21,6 +21,7 @@ Plugin 'SirVer/ultisnips'
 Plugin 'pangloss/vim-javascript'  
 Plugin 'mxw/vim-jsx'  
 Plugin 'ervandew/supertab'
+Plugin 'hail2u/vim-css3-syntax'
 call vundle#end()
 
 filetype plugin indent on
