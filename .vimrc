@@ -113,6 +113,9 @@ let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
 let g:UltiSnipsSnippetDirectories=[$HOME.'/UltiSnips/']
 
+" match tag config 
+let g:mta_filetypes = { 'html': 1, 'php': 1}
+
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
