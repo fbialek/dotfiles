@@ -22,6 +22,7 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'  
 Plugin 'ervandew/supertab'
 Plugin 'hail2u/vim-css3-syntax'
+Plugin 'scrooloose/syntastic'
 call vundle#end()
 
 filetype plugin indent on
@@ -111,6 +112,14 @@ let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
 let g:UltiSnipsSnippetDirectories=[$HOME.'/UltiSnips/']
 
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
 au BufRead,BufNewFile *.scss set filetype=scss.css
 au BufRead,BufNewFile *.jade set filetype=javascript
