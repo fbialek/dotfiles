@@ -14,6 +14,7 @@ Plugin 'Raimondi/delimitMate'
 Plugin 'digitaltoad/vim-pug'  
 Plugin 'ternjs/tern_for_vim'  
 Plugin 'Valloric/YouCompleteMe'  
+Plugin 'Valloric/MatchTagAlways'  
 Plugin 'vimwiki/vimwiki'  
 Plugin 'ctrlpvim/ctrlp.vim'  
 Plugin 'easymotion/vim-easymotion'  
@@ -111,6 +112,9 @@ let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
 let g:UltiSnipsSnippetDirectories=[$HOME.'/UltiSnips/']
+
+" match tag config 
+let g:mta_filetypes = { 'html': 1, 'php': 1}
 
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
