@@ -1,4 +1,3 @@
-set nocompatible
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -22,7 +21,7 @@ Plugin 'mxw/vim-jsx'
 Plugin 'ervandew/supertab'
 Plugin 'hail2u/vim-css3-syntax'
 Plugin 'junegunn/fzf'
-Plugin 'scrooloose/syntastic'
+Plugin 'w0rp/ale'
 Plugin 'posva/vim-vue'
 call vundle#end()
 
@@ -36,6 +35,7 @@ set t_ut=
 
 " don't use colors on long lines
 set synmaxcol=2120
+
 colo gruvbox
 let g:gruvbox_contrast_dark='hard'
 set background=dark
@@ -87,14 +87,10 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
-set statusline+=%#warningmsg#
-set statusline+=%*
-
 let g:javascript_enable_domhtmlcss = 1 
 let g:javascript_ignore_javaScriptdoc = 1 
 let g:jsx_ext_required = 0
 
-let g:neocomplete#enable_at_startup = 1
 autocmd FileType javascript setlocal omnifunc=tern#Complete
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
@@ -117,17 +113,6 @@ let g:UltiSnipsSnippetDirectories=[$HOME.'/UltiSnips/']
 
 " match tag config 
 let g:mta_filetypes = { 'html': 1, 'php': 1}
-
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
-let g:syntastic_check_on_w = 0
-let g:syntastic_javascript_checkers = ['eslint']
 
 au BufRead,BufNewFile *.scss set filetype=scss.css
 au BufRead,BufNewFile *.jade set filetype=javascript
