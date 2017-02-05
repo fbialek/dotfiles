@@ -23,6 +23,7 @@ Plugin 'ervandew/supertab'
 Plugin 'hail2u/vim-css3-syntax'
 Plugin 'junegunn/fzf'
 Plugin 'scrooloose/syntastic'
+Plugin 'posva/vim-vue'
 call vundle#end()
 
 filetype plugin indent on
