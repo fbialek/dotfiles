@@ -24,8 +24,6 @@ Plugin 'junegunn/fzf'
 Plugin 'w0rp/ale'
 call vundle#end()
 
-call vundle#end()
-
 filetype plugin indent on
 syntax on
 set omnifunc=syntaxcomplete#Complete
