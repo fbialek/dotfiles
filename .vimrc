@@ -87,6 +87,11 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
+" show white space 
+set listchars=tab:>~,nbsp:_,trail:.
+set list
+
+"
 let g:javascript_enable_domhtmlcss = 1 
 let g:javascript_ignore_javaScriptdoc = 1 
 let g:jsx_ext_required = 0
