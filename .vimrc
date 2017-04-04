@@ -93,7 +93,7 @@ set list
 
 "
 let g:javascript_enable_domhtmlcss = 1 
-let g:javascript_ignore_javaScriptdoc = 1 
+" let g:javascript_ignore_javaScriptdoc = 1 
 let g:jsx_ext_required = 0
 
 autocmd FileType javascript setlocal omnifunc=tern#Complete
@@ -119,5 +119,5 @@ let g:UltiSnipsSnippetDirectories=[$HOME.'/UltiSnips/']
 " match tag config 
 let g:mta_filetypes = { 'html': 1, 'php': 1}
 
-au BufRead,BufNewFile *.scss set filetype=scss.css
+au BufRead,BufNewFile *.scss *.sass set filetype=scss.css
 au BufRead,BufNewFile *.jade set filetype=javascript
