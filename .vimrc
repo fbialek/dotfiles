@@ -59,11 +59,8 @@ set incsearch		" do incremental searching
 " Don't use Ex mode, use Q for formatting
 map Q gq
 
-" CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
-" so that you can undo CTRL-U after inserting a line break.
-inoremap <C-U> <C-G>u<C-U>
-
 inoremap jj <ESC>
+
 " easy yank from system clipboard
 noremap <enter>y "+y
 noremap <enter>p "+p
