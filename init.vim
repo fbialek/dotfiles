@@ -15,13 +15,14 @@ Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'  
 Plug 'ervandew/supertab'
 Plug 'hail2u/vim-css3-syntax'
-Plug 'junegunn/fzf'
 Plug 'w0rp/ale'
 Plug 'junegunn/seoul256.vim'
 call plug#end()
 
 set hidden
-" set backup
+
+set undofile
+set undodir=~/.undo
 
 colo seoul256
 
@@ -74,20 +75,12 @@ set listchars=tab:>~,nbsp:_,trail:.
 set list
 
 let g:deoplete#enable_at_startup = 1
-" if !exists('g:deoplete#omni#input_patterns')
-"  let g:deoplete#omni#input_patterns = {}
-" endif
-" let g:deoplete#omni#functions = {}
-" let g:deoplete#omni#functions.javascript = [ 'tern#Complete', 'jspc#omni' ]
-
-" let g:tern_request_timeout = 1
 let g:tern_show_signature_in_pum = '0'  " This do disable full signature type on autocomplete
 
 "Add extra filetypes
 let g:tern#filetypes = [ 'jsx', 'javascript.jsx', 'vue']
 
 let g:javascript_enable_domhtmlcss = 1 
-" let g:javascript_ignore_javaScriptdoc = 1 
 let g:jsx_ext_required = 0
 
 autocmd FileType javascript setlocal omnifunc=tern#Complete
@@ -103,4 +96,12 @@ let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
 let g:UltiSnipsSnippetDirectories=[$HOME.'/UltiSnips/']
 
-nnoremap <C-P> :Denite file_rec <CR>
+call denite#custom#var('grep', 'command', ['ack'])
+
+nnoremap <C-p> :<C-u>Denite file_rec<CR>
+nnoremap <leader>s :<C-u>Denite buffer<CR>
+nnoremap <leader><Space>s :<C-u>DeniteBufferDir buffer<CR>
+nnoremap <leader>8 :<C-u>DeniteCursorWord grep:. -mode=normal<CR>
+nnoremap <leader>/ :<C-u>Denite grep:. -mode=normal<CR>
+nnoremap <leader><Space>/ :<C-u>DeniteBufferDir grep:. -mode=normal<CR>
+nnoremap <leader>d :<C-u>DeniteBufferDir file_rec<CR>
