@@ -8,6 +8,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-fugitive' 
 Plug 'tpope/vim-commentary' 
 Plug 'tpope/vim-vinegar' 
+Plug 'justinmk/vim-sneak'
 Plug 'Raimondi/delimitMate' 
 Plug 'digitaltoad/vim-pug'  
 Plug 'Valloric/MatchTagAlways'  
@@ -105,3 +106,5 @@ nnoremap <leader>8 :<C-u>DeniteCursorWord grep:. -mode=normal<CR>
 nnoremap <leader>/ :<C-u>Denite grep:. -mode=normal<CR>
 nnoremap <leader><Space>/ :<C-u>DeniteBufferDir grep:. -mode=normal<CR>
 nnoremap <leader>d :<C-u>DeniteBufferDir file_rec<CR>
+
+let g:sneak#label = 1
