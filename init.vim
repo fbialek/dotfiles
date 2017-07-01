@@ -2,6 +2,7 @@ call plug#begin()
 Plug 'Shougo/deoplete.nvim', {'do': ':UpdateRemotePlugins'}
 Plug 'Shougo/denite.nvim'
 Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+Plug 'justinmk/vim-sneak'
 Plug 'mattn/emmet-vim' 
 Plug 'tpope/vim-surround' 
 Plug 'tpope/vim-repeat' 
@@ -105,3 +106,4 @@ nnoremap <leader>8 :<C-u>DeniteCursorWord grep:. -mode=normal<CR>
 nnoremap <leader>/ :<C-u>Denite grep:. -mode=normal<CR>
 nnoremap <leader><Space>/ :<C-u>DeniteBufferDir grep:. -mode=normal<CR>
 nnoremap <leader>d :<C-u>DeniteBufferDir file_rec<CR>
+
