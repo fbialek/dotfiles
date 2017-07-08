@@ -50,7 +50,7 @@ map Q gq
 " so that you can undo CTRL-U after inserting a line break.
 inoremap <C-U> <C-G>u<C-U>
 
-inoremap jj <ESC>
+inoremap fd <ESC>
 
 " easy yank from system clipboard
 noremap <enter>y "+y
@@ -60,10 +60,6 @@ noremap <enter>P "+P
 "fold tag
 nnoremap <leader>ft Vatzf
 
-nnoremap ; :
-vnoremap ; :
-nnoremap <Space> ;
-vnoremap <Space> ;
 
 " easy movement between splits
 nnoremap <C-K> <C-W><C-K>

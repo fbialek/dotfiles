@@ -314,6 +314,8 @@ before packages are loaded. If you are unsure, you should try in setting them in
   )
 (my-setup-indent 2)
 (defun dotspacemacs/user-config ()
+(setq key-chord-two-keys-delay 0.4)
+
   "Configuration function for user code.
 This function is called at the very end of Spacemacs initialization after
 layers configuration.
