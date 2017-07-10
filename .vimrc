@@ -59,7 +59,7 @@ set incsearch		" do incremental searching
 " Don't use Ex mode, use Q for formatting
 map Q gq
 
-inoremap jj <ESC>
+inoremap fd <ESC>
 
 " easy yank from system clipboard
 noremap <enter>y "+y
@@ -72,11 +72,6 @@ set nowb
 
 "fold tag
 nnoremap <leader>ft Vatzf
-
-nnoremap ; :
-vnoremap ; :
-nnoremap <Space> ;
-vnoremap <Space> ;
 
 " easy movement between splits
 nnoremap <C-K> <C-W><C-K>
