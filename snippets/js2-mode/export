@@ -1,7 +1,7 @@
 # -*- mode: snippet; require-final-newline: nil -*-
 # name: exportFun
-# key: expf
+# key: exp
 # --
-export default function () {
+export deault function () {
        $0
 }

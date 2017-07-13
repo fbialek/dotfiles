@@ -70,9 +70,6 @@ set noswapfile
 set nobackup
 set nowb
 
-"fold tag
-nnoremap <leader>ft Vatzf
-
 " easy movement between splits
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-J> <C-W><C-J>
