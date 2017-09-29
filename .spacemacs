@@ -31,6 +31,8 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
+     elixir
+     yaml
      vimscript
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
@@ -56,7 +58,6 @@ values."
             shell-default-height 30
             shell-default-position 'bottom)
      ranger
-     spell-checking
      syntax-checking
      version-control
      games
@@ -145,7 +146,7 @@ values."
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
    dotspacemacs-default-font '("Source Code Pro"
-                               :size 13
+                               :size 16
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
