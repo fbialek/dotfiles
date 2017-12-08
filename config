@@ -49,7 +49,7 @@ new_window                       pixel 0
 # is used in the bar {} block below.
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango: Source Code Pro 9
+font pango: PragmataPro Mono 9
 # Before i3 v4.8, we used to recommend this one as the default:
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 # The font above is very space-efficient, that is, it looks good, sharp and
@@ -61,7 +61,7 @@ font pango: Source Code Pro 9
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec gnome-terminal
+bindsym $mod+Return exec terminator
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -153,8 +153,8 @@ bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
 gaps inner 9
-gaps outer 9
-smart_gaps on
+gaps outer 14
+
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
@@ -193,7 +193,7 @@ mode "launch" {
   bindsym n exec nautilus; mode "default"
   bindsym c exec chromium-browser; mode "default"
   bindsym f exec filezilla; mode "default"
-  bindsym e exec emacs; mode "default"
+  bindsym e exec emacsclient --nc; mode "default"
         # back to normal: Enter or Escape
         bindsym Return mode "default"
         bindsym Escape mode "default"
@@ -217,4 +217,4 @@ colors {
 
 bindsym $mod+shift+x exec i3lock -c 000000
 
-exec_always feh --bg-scale /home/filip/images/bg.jpg
+exec_always feh --bg-scale /home/filip/Downloads/bg.jpg
