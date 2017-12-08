@@ -1,6 +1,4 @@
 # -*- mode: snippet -*-
-#name : else
+#name : cl
 # --
-else {
-  $0
-}
+console.log($0)
