@@ -31,6 +31,7 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
+     go
      elixir
      yaml
      vimscript
@@ -330,6 +331,8 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   (define-key evil-insert-state-map (kbd "C-0") 'yas-expand )
+  (add-to-list 'auto-mode-alist '("\\.blade.php\\'" . web-mode))
+
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
