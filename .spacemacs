@@ -32,6 +32,8 @@ values."
    dotspacemacs-configuration-layers
    '(
      go
+     typescript
+     rust
      elixir
      yaml
      vimscript
@@ -332,7 +334,8 @@ explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   (define-key evil-insert-state-map (kbd "C-0") 'yas-expand )
   (add-to-list 'auto-mode-alist '("\\.blade.php\\'" . web-mode))
-
+  (global-set-key (kbd "C-=") 'evil-numbers/inc-at-pt)
+  (global-set-key (kbd "C--") 'evil-numbers/dec-at-pt)
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
