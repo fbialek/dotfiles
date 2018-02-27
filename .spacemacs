@@ -336,6 +336,7 @@ explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   (setq org-agenda-files '("~/Dropbox/org"))
   (define-key evil-insert-state-map (kbd "C-0") 'yas-expand )
+  (add-to-list 'auto-mode-alist '("\\.blade.php\\'" . web-mode))
   (global-set-key (kbd "C-=") 'evil-numbers/inc-at-pt)
   (global-set-key (kbd "C--") 'evil-numbers/dec-at-pt)
   )

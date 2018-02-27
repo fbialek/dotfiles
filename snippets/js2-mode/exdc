@@ -2,6 +2,6 @@
 # name: export default
 # key: exd
 # --
-export default class () {
+export default class {
   $0
 }
