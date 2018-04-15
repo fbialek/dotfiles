@@ -11,7 +11,7 @@ alias @="sudo"
 alias G="grep"
 alias sd="sudo systemctl"
 alias sdrt="sudo systemctl start"
-alias sdop="sudo systemctl start"
+alias sdop="sudo systemctl stop"
 alias sdrs="sudo systemctl restart"
 
 function up {
