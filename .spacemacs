@@ -307,6 +307,7 @@ values."
   ;; web development
   (setq coffee-tab-width n) ; coffeescript
   (setq javascript-indent-level n) ; javascript-mode
+  (setq typescript-indent-level n) ; typescript-mode
   (setq js-indent-level n) ; js-mode
   (setq js2-basic-offset n) ; js2-mode, in latest js2-mode, it's alias of js-indent-level
   (setq web-mode-markup-indent-offset n) ; web-mode, html tag in html file
