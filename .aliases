@@ -1,0 +1,27 @@
+alias zshconfig="nvim ~/.zshrc"
+alias g="git"
+alias ga="git add"
+alias gs="git status"
+alias gc="git commit"
+alias gpl="git pull origin"
+alias gps="git push origin"
+alias jj="nvim"
+alias bi="brew install"
+alias @="sudo"
+alias G="grep"
+alias sd="sudo systemctl"
+alias sdrt="sudo systemctl start"
+alias sdop="sudo systemctl stop"
+alias sdrs="sudo systemctl restart"
+
+function up {
+  if [[ "$#" < 1 ]] ; then
+    cd ..
+  else
+    CDSTR=""
+    for i in {1..$1} ; do
+      CDSTR="../$CDSTR"
+    done
+    cd $CDSTR
+  fi
+}
