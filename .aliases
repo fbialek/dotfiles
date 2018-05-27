@@ -1,4 +1,3 @@
-alias zshconfig="nvim ~/.zshrc"
 alias g="git"
 alias ga="git add"
 alias gs="git status"
@@ -13,6 +12,8 @@ alias sd="sudo systemctl"
 alias sdrt="sudo systemctl start"
 alias sdop="sudo systemctl stop"
 alias sdrs="sudo systemctl restart"
+alias msq="mysql -u root -p"
+alias zz='nvim ~/.zshrc && source ~/.zshrc'
 
 function up {
   if [[ "$#" < 1 ]] ; then
@@ -24,4 +25,16 @@ function up {
     done
     cd $CDSTR
   fi
+}
+mkcd ()
+{
+    case $# in
+    1)
+        mkdir -p $1
+        cd $1
+        ;;
+    *)
+        echo "USAGE : mkcd rep"
+        ;;
+    esac
 }
