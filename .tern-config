@@ -6,7 +6,10 @@
                 ],
     "plugins": {
               "modules": {},
+              "commonjs": {},
               "es_modules": {},
+              "webpack": {},
+              "node_resolve":{},
               "node": {}
             }
 }
