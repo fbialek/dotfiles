@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
-# name: arrow
-# key: ar-long
+# name: lambda
+# key: ar
 # --
 ($0) => {$1}

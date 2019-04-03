@@ -30,16 +30,15 @@ values."
    dotspacemacs-configuration-layer-path '()
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(
+   '(yaml
      python
      scheme
-     go
      typescript
-     elixir
+     flow-type
      helm
      html
-     javascript
-     php
+     (javascript :variables javascript-backend 'lsp)
+     lsp
      (auto-completion :variables
                       auto-completion-return-key-behavior nil
                       auto-completion-tab-key-behavior 'complete
@@ -62,7 +61,7 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '(editorconfig kaolin-themes rjsx-mode)
+   dotspacemacs-additional-packages '(editorconfig kaolin-themes rjsx-mode company-flow graphql-mode)
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -141,7 +140,7 @@ values."
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
    dotspacemacs-default-font '("PragmataPro Mono"
-                               :size 14
+                               :size 16
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
@@ -314,9 +313,38 @@ before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
   )
 (my-setup-indent 2)
-(setq-default evil-escape-delay 0.9) 
+(setq create-lockfiles nil)
+(setq-default evil-escape-delay 0.2) 
 (setq company-minimum-prefix-length 2)
+(setq js2-strict-missing-semi-warning nil)
+(setq js2-mode-show-parse-errors nil)
+(setq js2-mode-show-strict-warnings nil)
 (add-to-list 'auto-mode-alist '("\\.jsx$" . js2-jsx-mode))
+(defun kill-minibuffer ()
+  (interactive)
+  (when (windowp (active-minibuffer-window))
+    (evil-ex-search-exit)))
+
+(add-hook 'mouse-leave-buffer-hook #'kill-minibuffer)
+
+:::::::::::::::::::::;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; hides some kind of buffers from helm-mini SPC-b-b
+:::::::::::::::::::::;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defun bsl/filter-buffers (buffer-list)
+  (delq nil (mapcar
+             (lambda (buffer)
+               (cond
+                ((eq (with-current-buffer buffer major-mode)  'dired-mode) nil)
+                ((eq (with-current-buffer buffer major-mode)  'org-mode) nil)
+                ((eq (with-current-buffer buffer major-mode)  'org-agenda-mode) nil)
+                (t buffer)))
+             buffer-list)))
+
+(advice-add 'helm-skip-boring-buffers :filter-return 'bsl/filter-buffers)
+:::::::::::::::::::::;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+:::::::::::::::::::::;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+:::::::::::::::::::::;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (defun dotspacemacs/user-config ()
   "Configuration function for user code.
 This function is called at the very end of Spacemacs initialization after
@@ -336,6 +364,13 @@ you should place your code here."
   (add-hook 'before-save-hook 'tide-format-before-save)
   (add-hook 'js2-mode-hook #'setup-tide-mode)
   (add-hook 'js2-jsx-mode-hook #'setup-tide-mode)
+
+  (custom-set-faces
+   ;; custom-set-faces was added by Custom.
+   ;; If you edit it by hand, you could mess it up, so
+   ;; Your init file should contain only one such insta
+   ;; If there is more than one, they won't work right.
+   '(js2-error ((t (:foreground "orange" :underline nil)))))
 
   (setq org-agenda-files '("~/Dropbox/org"))
   (define-key evil-insert-state-map (kbd "C-0") 'yas-expand )
@@ -393,16 +428,17 @@ This function is called at the very end of Spacemacs initialization."
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    (quote
-    ("c4d3cbd4f404508849e4e902ede83a4cb267f8dff527da3e42b8103ec8482008" "f9567e839389f2f0a1ede73d1c3e3bd2c9ed93adaf6bb7d13e579ea2b15fcef8" "b7d967c53f4e3dfc1f847824ffa3f902de44d3a99b12ea110e0ec2fcec24501d" "7e362b29da8aa9447b51c2b354d8df439db33b3612ddd5baa34ad3de32206d83" "f72ccaa311763cb943de5f9f56a0d53b0009b772f4d05f47835aa08011797aa8" "fc524ddf651fe71096d0012b1c34d08e3f20b20fb1e1b972de4d990b2e793339" default)))
+    ("bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" "834dd2f8d07bee7897b8119afa1f97aa24f1864ba232eb769c3236ea236ca99a" "f4260b30a578a781b4c0858a4a0a6071778aaf69aed4ce2872346cbb28693c1a" "fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" "a95d66071817d19102f6a5579c23fa90dcddcecb06d9a1f1f94dbc20cf596df7" default)))
  '(evil-want-Y-yank-to-eol nil)
+ '(flycheck-javascript-flow-args (quote ("--respect-pragma")))
  '(package-selected-packages
    (quote
-    (kaolin-themes autothemer hydra yasnippet-snippets yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode helm-pydoc cython-mode company-anaconda anaconda-mode pythonic toml-mode org-category-capture log4e gntp skewer-mode simple-httpd json-snatcher json-reformat multiple-cursors gitignore-mode fringe-helper git-gutter+ git-gutter flycheck-rust pos-tip web-completion-data tern auto-complete mmt tide typescript-mode racer org-mime cargo rust-mode bind-key goto-chg alert projectile git-commit ghub let-alist async dash-functional f epl powerline dash elfeed geiser sql-indent go-guru go-eldoc company-go go-mode yaml-mode editorconfig sonic-pi ob-elixir flycheck-mix flycheck-credo alchemist elixir-mode sos pdf-tools tablist vimrc-mode dactyl-mode smartparens highlight evil flycheck company helm helm-core avy markdown-mode magit magit-popup with-editor yasnippet haml-mode js2-mode phpunit phpcbf php-extras php-auto-yasnippets drupal-mode php-mode xterm-color ws-butler winum which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package unfill typit toc-org tagedit sudoku spaceline smeargle slim-mode shell-pop scss-mode sass-mode restart-emacs ranger rainbow-delimiters pug-mode popwin persp-mode pcre2el paradox pacmacs org-projectile org-present org-pomodoro org-download org-bullets open-junk-file neotree mwim multi-term move-text mmm-mode markdown-toc magit-gitflow macrostep lorem-ipsum livid-mode linum-relative link-hint less-css-mode json-mode js2-refactor js-doc info+ indent-guide hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gh-md fuzzy flyspell-correct-helm flycheck-pos-tip flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav dumb-jump diff-hl define-word company-web company-tern company-statistics company-quickhelp column-enforce-mode coffee-mode clean-aindent-mode auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell 2048-game)))
+    (lsp-ui lsp-python lsp-javascript-typescript company-lsp lsp-mode ht rjsx-mode ac-ispell kaolin-themes autothemer hydra yasnippet-snippets yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode helm-pydoc cython-mode company-anaconda anaconda-mode pythonic toml-mode org-category-capture log4e gntp skewer-mode simple-httpd json-snatcher json-reformat multiple-cursors gitignore-mode fringe-helper git-gutter+ git-gutter flycheck-rust pos-tip web-completion-data tern auto-complete mmt tide typescript-mode racer org-mime cargo rust-mode bind-key goto-chg alert projectile git-commit ghub let-alist async dash-functional f epl powerline dash elfeed geiser sql-indent go-guru go-eldoc company-go go-mode yaml-mode editorconfig sonic-pi ob-elixir flycheck-mix flycheck-credo alchemist elixir-mode sos pdf-tools tablist vimrc-mode dactyl-mode smartparens highlight evil flycheck company helm helm-core avy markdown-mode org-plus-contrib magit magit-popup with-editor yasnippet haml-mode js2-mode phpunit phpcbf php-extras php-auto-yasnippets drupal-mode php-mode xterm-color ws-butler winum which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package unfill typit toc-org tagedit sudoku spaceline smeargle slim-mode shell-pop scss-mode sass-mode restart-emacs ranger rainbow-delimiters pug-mode popwin persp-mode pcre2el paradox pacmacs ox-reveal orgit org-projectile org-present org-pomodoro org-download org-bullets open-junk-file neotree mwim multi-term move-text mmm-mode markdown-toc magit-gitflow macrostep lorem-ipsum livid-mode linum-relative link-hint less-css-mode json-mode js2-refactor js-doc info+ indent-guide hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gh-md fuzzy flyspell-correct-helm flycheck-pos-tip flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav dumb-jump diff-hl define-word company-web company-tern company-statistics company-quickhelp column-enforce-mode coffee-mode clean-aindent-mode auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line)))
  '(paradox-github-token t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(js2-error ((t (:foreground "orange" :underline nil)))))
 )
