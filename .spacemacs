@@ -37,6 +37,7 @@ values."
      flow-type
      helm
      html
+     pdf
      (javascript :variables javascript-backend 'lsp)
      lsp
      (auto-completion :variables
@@ -326,6 +327,7 @@ before packages are loaded. If you are unsure, you should try in setting them in
     (evil-ex-search-exit)))
 
 (add-hook 'mouse-leave-buffer-hook #'kill-minibuffer)
+(setq tide-tsserver-executable "/Users/fbialek/.nvm/versions/node/v11.3.0/bin/tsserver")
 
 :::::::::::::::::::::;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; hides some kind of buffers from helm-mini SPC-b-b
