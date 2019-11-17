@@ -1,0 +1,206 @@
+(require 'package)
+(setq package-enable-at-startup nil)
+(setq package-archives '(("org"       . "http://orgmode.org/elpa/") 
+                         ("gnu"       . "http://elpa.gnu.org/packages/") 
+                         ("melpa"     . "https://melpa.org/packages/")))
+(package-initialize)
+
+;; Install dependencies
+(unless (package-installed-p 'use-package) 
+  (package-refresh-contents) 
+  (package-install 'use-package t))
+(setq-default use-package-always-defer t use-package-always-ensure t)
+
+;; GLOBALS
+(use-package 
+  diminish)
+
+(setq exec-path (append exec-path '("home/filip/.nvm/versions/node/v12.3.1/bin")))
+
+(use-package 
+  org 
+  :ensure org-plus-contrib)
+(garbage-collect)
+
+(use-package 
+  evil 
+
+  :demand 
+  :ensure t 
+  :config (progn (evil-mode 1)))
+
+(use-package 
+  evil-leader 
+  :ensure t 
+  :config (progn 
+            (setq evil-leader/in-all-states t) 
+            (global-evil-leader-mode)))
+
+(setq-default indent-tabs-mode nil)
+
+(use-package 
+  all-the-icons 
+  :ensure t)
+
+(use-package doom-modeline
+      :ensure t
+      :hook (after-init . doom-modeline-mode))
+
+(use-package 
+  kaolin-themes 
+  :ensure t)
+
+(load-theme 'kaolin-valley-dark t)
+;; Set default font
+(set-face-attribute 'default nil
+                    :family "PragmataPro Mono"
+                    :height 140
+                    :width 'normal)
+
+(setq-default line-spacing 4)
+(tool-bar-mode -1)
+
+(menu-bar-mode -1)
+(unless (frame-parameter nil 'tty) 
+  (scroll-bar-mode -1))
+(set-window-margins (selected-window) 1 1)
+(setq inhibit-splash-screen t ring-bell-function 'ignore)
+
+(use-package 
+  helm 
+  :ensure t)
+(global-set-key (kbd "M-x") 'helm-M-x)
+
+(with-eval-after-load 'helm (define-key helm-map (kbd "C-j") 'helm-next-line) 
+                      (define-key helm-map (kbd "C-k") 'helm-previous-line))
+
+(setq dired-dwim-target t)
+
+(use-package 
+  magit 
+  :ensure t)
+
+(use-package 
+  general 
+  :ensure t)
+
+;; unbind
+(general-def :states '(normal motion emacs) 
+  "SPC" nil)
+
+(general-unbind 'insert "C-j" "C-k" "C-l")
+
+;; GLOBAL keybindings
+
+(general-define-key :states 'normal 
+                    :prefix "SPC" 
+                    "SPC"	'helm-M-x)
+
+(defun open-my-config () 
+  (interactive) 
+  (find-file "~/dotfiles/config.org"))
+
+(defun load-my-config () 
+  (interactive) 
+  (load-file "~/.emacs.d/init.el"))
+
+(general-define-key :states 'normal 
+                    :prefix "SPC" 
+                    "ff"	'helm-find-files "fw"	'save-buffer "fed"	'open-my-config "fj"
+                    'dired-jump "fer"	'load-my-config)
+
+;; BUFFERS Keybindings SPC-b
+(general-define-key :states 'normal 
+                    :prefix "SPC" 
+                    "bb"	'helm-mini)
+
+;; WINDOWS Keybindings SPC-w
+(general-define-key :states 'normal 
+                    :prefix "SPC" 
+                    "w-"	'split-window-below 
+                    "w/"	'split-window-right
+                    "1"	'winum-select-window-1
+                    "2"	'winum-select-window-2
+                    "3"	'winum-select-window-3
+                    "4"	'winum-select-window-4
+                    "5"	'winum-select-window-5
+                    "6"	'winum-select-window-6
+                    "7"	'winum-select-window-7
+                    "8"	'winum-select-window-8
+                    "wd"	'delete-window)
+
+(use-package winum
+  :ensure t
+  :init
+  (setq-default winum-keymap nil)
+  :config
+  (winum-mode))
+
+(use-package smartparens 
+  :ensure t 
+  :config (progn 
+            (require 'smartparens-config)))
+
+(add-hook 'after-init-hook 'smartparens-global-mode)
+
+(use-package 
+  yasnippet 
+  :ensure t 
+  :config
+
+  ;; Adding yasnippet support to company
+  (add-to-list 'company-backends '(company-yasnippet))
+
+  ;; Activate global
+  (yas-global-mode))
+
+(use-package 
+  yasnippet-snippets 
+  :ensure t)
+
+(use-package 
+  ivy-yasnippet 
+  :ensure t)
+
+(use-package 
+  company 
+  :defer t 
+  :diminish (company-mode . "c") 
+  :init (setq company-idle-delay 0.1 company-minimum-prefix-length 1 company-require-match nil
+              company-tooltip-align-annotations t company-tooltip-minimum-width 60))
+
+(with-eval-after-load 'company (define-key company-active-map (kbd "C-j") 'company-select-next) 
+                      (define-key company-active-map (kbd "C-k") 'company-select-previous) 
+                      (define-key company-active-map (kbd "C-l") 'company-complete-selection))
+
+(add-hook 'after-init-hook 'global-company-mode)
+
+(use-package 
+  lsp-mode 
+  :hook (js-mode . lsp) 
+  :hook (js-mode . lsp) 
+  :commands lsp)
+
+(use-package 
+  lsp-ui 
+  :commands lsp-ui-mode)
+
+(use-package 
+  company-lsp 
+  :commands company-lsp)
+
+(use-package 
+  helm-lsp 
+  :commands helm-lsp-workspace-symbol)
+
+(use-package 
+  elisp-format 
+  :ensure t)
+
+(use-package 
+  js2-mode 
+  :ensure t)
+
+(add-to-list 'auto-mode-alist '("\\.js\\'" . js-mode))
+(add-to-list 'interpreter-mode-alist '("node" . js-jsx-mode))
+(add-hook 'js-mode-hook 'js2-minor-mode)
