@@ -19,6 +19,16 @@ alias zz='nvim ~/.zshrc && source ~/.zshrc'
 
 alias getJS="cp ~/dotfiles/jsconfig.json ./jsconfig.json"
 
+function gres () {
+  git fetch origin;
+  if  [ -z "$1"]
+  then 
+    git reset --hard origin/master;
+  else
+    git reset --hard origin/"$1";
+  fi
+}
+
 function up {
   if [[ "$#" < 1 ]] ; then
     cd ..
@@ -30,6 +40,7 @@ function up {
     cd $CDSTR
   fi
 }
+
 mkcd ()
 {
     case $# in

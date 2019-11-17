@@ -39,12 +39,13 @@ values."
      flow-type 
      helm
      html
+     groovy
      (javascript :variables
                  javascript-backend 'lsp
-                 javascript-fmt-tool 'prettier
+                 javascript-import-tool 'import-js
+                 javascript-fmt-tool 'prettier-js
                  js2-basic-offset 2
-                 js-indent-level 2
-                 node-add-modules-path t)
+                 js-indent-level 2)
      (auto-completion :variables
                       auto-completion-return-key-behavior nil
                       auto-completion-tab-key-behavior 'complete
@@ -380,7 +381,7 @@ you should place your code here."
   (add-hook 'js2-mode-hook #'setup-tide-mode)
   (add-hook 'js2-jsx-mode-hook #'setup-tide-mode)
 
-  (setq gc-cons-threshold 100000000)
+  (setq gc-cons-threshold 10000000)
 
   (custom-set-faces
    ;; custom-set-faces was added by Custom.
@@ -446,11 +447,13 @@ This function is called at the very end of Spacemacs initialization."
  '(ansi-color-names-vector
    ["#0a0814" "#f2241f" "#67b11d" "#b1951d" "#4f97d7" "#a31db1" "#28def0" "#b2b2b2"])
  '(custom-safe-themes
-   '("a95d66071817d19102f6a5579c23fa90dcddcecb06d9a1f1f94dbc20cf596df7" default))
+   (quote
+    ("a95d66071817d19102f6a5579c23fa90dcddcecb06d9a1f1f94dbc20cf596df7" default)))
  '(evil-want-Y-yank-to-eol nil)
- '(flycheck-javascript-flow-args '("--respect-pragma"))
+ '(flycheck-javascript-flow-args (quote ("--respect-pragma")))
  '(hl-todo-keyword-faces
-   '(("TODO" . "#dc752f")
+   (quote
+    (("TODO" . "#dc752f")
      ("NEXT" . "#dc752f")
      ("THEM" . "#2d9574")
      ("PROG" . "#4f97d7")
@@ -464,11 +467,12 @@ This function is called at the very end of Spacemacs initialization."
      ("TEMP" . "#b1951d")
      ("FIXME" . "#dc752f")
      ("XXX" . "#dc752f")
-     ("XXXX" . "#dc752f")))
+     ("XXXX" . "#dc752f"))))
  '(package-selected-packages
-   '(dap-mode bui tree-mode rjsx-mode ac-ispell kaolin-themes autothemer hydra yasnippet-snippets yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode helm-pydoc cython-mode company-anaconda anaconda-mode pythonic toml-mode org-category-capture log4e gntp skewer-mode simple-httpd json-snatcher json-reformat multiple-cursors gitignore-mode fringe-helper git-gutter+ git-gutter flycheck-rust pos-tip web-completion-data tern auto-complete mmt tide typescript-mode racer org-mime cargo rust-mode bind-key goto-chg alert projectile git-commit ghub let-alist async dash-functional f epl powerline dash elfeed geiser sql-indent go-guru go-eldoc company-go go-mode yaml-mode editorconfig sonic-pi ob-elixir flycheck-mix flycheck-credo alchemist elixir-mode sos pdf-tools tablist vimrc-mode dactyl-mode smartparens highlight evil flycheck company helm helm-core avy markdown-mode org-plus-contrib magit magit-popup with-editor yasnippet haml-mode js2-mode phpunit phpcbf php-extras php-auto-yasnippets drupal-mode php-mode xterm-color ws-butler winum which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package unfill typit toc-org tagedit sudoku spaceline smeargle slim-mode shell-pop scss-mode sass-mode restart-emacs ranger rainbow-delimiters pug-mode popwin persp-mode pcre2el paradox pacmacs ox-reveal orgit org-projectile org-present org-pomodoro org-download org-bullets open-junk-file neotree mwim multi-term move-text mmm-mode markdown-toc magit-gitflow macrostep lorem-ipsum livid-mode linum-relative link-hint less-css-mode json-mode js2-refactor js-doc info+ indent-guide hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gh-md fuzzy flyspell-correct-helm flycheck-pos-tip flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav dumb-jump diff-hl define-word company-web company-tern company-statistics company-quickhelp column-enforce-mode coffee-mode clean-aindent-mode auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line))
+   (quote
+    (groovy-mode groovy-imports pcache rjsx-mode ac-ispell kaolin-themes autothemer hydra yasnippet-snippets yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode helm-pydoc cython-mode company-anaconda anaconda-mode pythonic toml-mode org-category-capture log4e gntp skewer-mode simple-httpd json-snatcher json-reformat multiple-cursors gitignore-mode fringe-helper git-gutter+ git-gutter flycheck-rust pos-tip web-completion-data tern auto-complete mmt tide typescript-mode racer org-mime cargo rust-mode bind-key goto-chg alert projectile git-commit ghub let-alist async dash-functional f epl powerline dash elfeed geiser sql-indent go-guru go-eldoc company-go go-mode yaml-mode editorconfig sonic-pi ob-elixir flycheck-mix flycheck-credo alchemist elixir-mode sos pdf-tools tablist vimrc-mode dactyl-mode smartparens highlight evil flycheck company helm helm-core avy markdown-mode org-plus-contrib magit magit-popup with-editor yasnippet haml-mode js2-mode phpunit phpcbf php-extras php-auto-yasnippets drupal-mode php-mode xterm-color ws-butler winum which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package unfill typit toc-org tagedit sudoku spaceline smeargle slim-mode shell-pop scss-mode sass-mode restart-emacs ranger rainbow-delimiters pug-mode popwin persp-mode pcre2el paradox pacmacs ox-reveal orgit org-projectile org-present org-pomodoro org-download org-bullets open-junk-file neotree mwim multi-term move-text mmm-mode markdown-toc magit-gitflow macrostep lorem-ipsum livid-mode linum-relative link-hint less-css-mode json-mode js2-refactor js-doc info+ indent-guide hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gh-md fuzzy flyspell-correct-helm flycheck-pos-tip flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav dumb-jump diff-hl define-word company-web company-tern company-statistics company-quickhelp column-enforce-mode coffee-mode clean-aindent-mode auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line)))
  '(paradox-github-token t)
- '(pdf-view-midnight-colors '("#b2b2b2" . "#292b2e")))
+ '(pdf-view-midnight-colors (quote ("#b2b2b2" . "#292b2e"))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
